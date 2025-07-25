@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiminio-deployment
+  labels:
+    app: apiminio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apiminio
+  template:
+    metadata:
+      labels:
+        app: apiminio
+    spec:
+      containers:
+      - name: apiminio
+        image: localhost:32000/apiminio:latest
+        ports:
+        - containerPort: 7676
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"

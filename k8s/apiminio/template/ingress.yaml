@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apiminio-ingress
+spec:
+  rules:
+  - host: apiminio.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: apiminio-service
+            port:
+              number: 7676

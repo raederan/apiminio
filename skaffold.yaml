@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: apiminio
+build:
+  artifacts:
+    - image: localhost:32000/apiminio
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/apiminio/template/deployment.yaml
+    - k8s/apiminio/template/ingress.yaml
+    - k8s/apiminio/template/service.yaml
+    - k8s/minio/deployment.yaml
+    - k8s/minio/ingress.yaml
+    - k8s/minio/service.yaml

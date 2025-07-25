@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-deployment
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: quay.io/minio/minio:latest
+        imagePullPolicy: IfNotPresent
+        command:
+        - minio
+        args:
+        - server
+        - /data
+        - --console-address
+        - :9090
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        volumeMounts:
+        - mountPath: /data
+          name: localvolume
+      volumes:
+      - name: localvolume
+        emptyDir: {}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiminio-service
+spec:
+  type: ClusterIP
+  selector:
+    app: apiminio
+  ports:
+  - protocol: TCP
+    port: 7676
+    targetPort: 7676
