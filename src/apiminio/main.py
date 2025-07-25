@@ -3,8 +3,8 @@
 import os
 
 from fastapi import FastAPI, HTTPException
-from minio import Minio
-from minio.error import S3Error
+from minio import Minio  # type: ignore[import-untyped]
+from minio.error import S3Error  # type: ignore[import-untyped]
 from pydantic import BaseModel
 
 # MinIO client setup using environment variables
