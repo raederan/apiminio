@@ -7,7 +7,6 @@ from minio import Minio  # type: ignore[import-untyped]
 from minio.error import S3Error  # type: ignore[import-untyped]
 from pydantic import BaseModel
 
-# MinIO client setup using environment variables
 MINIO = Minio(
     endpoint=os.getenv("MINIO_ENDPOINT", "minio:9000"),
     access_key=os.getenv("MINIO_ACCESS_KEY", "minioadmin"),
