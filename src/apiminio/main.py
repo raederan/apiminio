@@ -47,7 +47,7 @@ class Apiminio(FastAPI):
         # Default
         tag_apiminio = "apiminio"
         self.get("/", tags=[tag_apiminio])(self.read_root)
-        self.get("/health", tags=[tag_apiminio])(self.health_check)
+        self.get("/healthy", tags=[tag_apiminio])(self.health_check)
 
         # Bucket operations
         tag_bucket_operations = "apiminio bucket operations"
@@ -68,9 +68,16 @@ class Apiminio(FastAPI):
     async def health_check(self) -> dict:
         """Health check endpoint for minio connection."""
         try:
-            self.minio.list_buckets()
+            buckets = self.minio.list_buckets()
+            if buckets is None:
+                return {"alive": True}
+            else:
+                return {"alive": True}
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
+            return {"alive": False}
+
+        # Fallback for mypy, though unreachable
 
     async def list_buckets(self) -> dict:
         """List all bucket names."""
