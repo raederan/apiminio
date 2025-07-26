@@ -62,5 +62,8 @@ jobs:
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
 
+      - name: Ensure CNAME file
+        run: echo "docs.apimin.io" > site/CNAME
+
       - name: Deploy documentation
         run: uv run mkdocs gh-deploy --force

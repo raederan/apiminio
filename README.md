@@ -1,8 +1,10 @@
 # apiminio <!-- omit in toc -->
 
-[![PyPI Version](https://img.shields.io/pypi/v/apiminio)](https://pypi.org/project/apiminio/)
-[![Docs Apiminio](https://img.shields.io/badge/apimin.io-docs-blue
+[![docs.apimin.io](https://img.shields.io/badge/apimin.io-docs-blue
 )](https://docs.apimin.io)
+[![Release](https://img.shields.io/github/v/release/raederan/apiminio
+)](https://github.com/raederan/apiminio/releases)
+[![PyPI Version](https://img.shields.io/pypi/v/apiminio)](https://pypi.org/project/apiminio/)
 [![Build status](https://img.shields.io/github/actions/workflow/status/raederan/apiminio/main.yml?branch=main)](https://github.com/raederan/apiminio/actions/workflows/main.yml?query=branch%3Amain)
 [![codecov](https://codecov.io/gh/raederan/apiminio/branch/main/graph/badge.svg)](https://codecov.io/gh/raederan/apiminio)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/raederan/apiminio)](https://img.shields.io/github/commit-activity/m/raederan/apiminio)

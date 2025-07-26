@@ -1,6 +1,6 @@
 [project]
 name = "apiminio"
-version = "0.1.2"
+version = "0.2.0"
 description = "apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup."
 authors = [{ name = "Andreas Räder", email = "andreas-raeder@gmx.de" }]
 readme = "README.md"
@@ -26,7 +26,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://raederan.github.io/apiminio/"
 Repository = "https://github.com/raederan/apiminio"
-Documentation = "https://raederan.github.io/apiminio/"
+Documentation = "https://docs.apimin.io"
 
 [dependency-groups]
 dev = [
