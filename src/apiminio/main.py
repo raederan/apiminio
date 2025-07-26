@@ -2,6 +2,7 @@
 
 import os
 from io import BytesIO
+from typing import Optional
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from minio import Minio  # type: ignore[import-untyped]
@@ -40,7 +41,7 @@ class Apiminio(FastAPI):
         )
         self.register_routes()
 
-    def register_routes(self):
+    def register_routes(self) -> None:
         """Register all routes for the Apiminio class."""
 
         # Default
@@ -91,7 +92,7 @@ class Apiminio(FastAPI):
                 self.minio.make_bucket(bucket_name)
                 return {"message": f"Bucket '{bucket_name}' created successfully."}
             else:
-                return {"message": f"Bucket '{bucket_name}' already exists."}
+                raise HTTPException(status_code=404, detail=f"Bucket '{bucket_name}' already exists.")
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -103,7 +104,7 @@ class Apiminio(FastAPI):
                 self.minio.remove_bucket(bucket_name)
                 return {"message": f"Bucket '{bucket_name}' deleted successfully."}
             else:
-                return {"message": f"Bucket '{bucket_name}' does not exist."}
+                raise HTTPException(status_code=404, detail=f"Bucket '{bucket_name}' does not exist.")
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -118,7 +119,7 @@ class Apiminio(FastAPI):
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
 
-    async def upload_file(self, bucket_name: str = Form(...), file: UploadFile = None) -> dict:
+    async def upload_file(self, bucket_name: str = Form(...), file: Optional[UploadFile] = None) -> dict:
         """Upload a file to a specified bucket."""
         if file is None:
             file = File(...)
@@ -136,13 +137,21 @@ class Apiminio(FastAPI):
             raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def delete_file(self, bucket_name: str = Form(...), file_name: str = Form(...)) -> dict:
-        """Delete a file from a specified bucket."""
+        """Delete a file from a specified bucket, checking if file exists first."""
         try:
-            if self.minio.bucket_exists(bucket_name):
+            if not self.minio.bucket_exists(bucket_name):
+                raise HTTPException(status_code=404, detail=f"Bucket '{bucket_name}' does not exist.")
+
+            # Check if file exists in bucket
+            objects = self.minio.list_objects(bucket_name, prefix=file_name, recursive=False)
+            file_exists = any(obj.object_name == file_name for obj in objects)
+            if not file_exists:
+                raise HTTPException(
+                    status_code=404, detail=f"File '{file_name}' does not exist in bucket '{bucket_name}'."
+                )
+            else:
                 self.minio.remove_object(bucket_name, file_name)
                 return {"message": f"File '{file_name}' deleted successfully from bucket '{bucket_name}'."}
-            else:
-                raise HTTPException(status_code=404, detail=f"Bucket '{bucket_name}' does not exist.")
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
 
