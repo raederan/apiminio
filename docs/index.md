@@ -14,21 +14,21 @@
 
 apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup.
 
-- **Github repository**: <https://github.com/raederan/apiminio/>
-- **Documentation** <https://raederan.github.io/apiminio/>
+- **Github repository** <https://github.com/raederan/apiminio/>
+- **Documentation** <https://docs.apimin.io/>
 
 ## 📄 Table of Contents <!-- omit in toc -->
 
-- [📚 Project](#-project)
+- [💡 Project](#-project)
 - [🚦 Prerequisites](#-prerequisites)
 - [🚀 Install](#-install)
 - [💥 Usage 🌰🐿️](#-usage-️)
-- [🥐 Recommended Dev Setup Kubernetes](#-recommended-dev-setup-kubernetes)
+- [🥐 Kubernetes](#-kubernetes)
 - [🛞 Commands](#-commands)
 - [📜 License](#-license)
 - [🦥 Authors](#-authors)
 
-## 📚 Project
+## 💡 Project
 
 1. At 1st basic implementation of apiminio, handling buckets and files will be focused.
 2. Security will be at the 2nd development stage using authenticated sessions by credentials as well as tokens.
@@ -83,8 +83,11 @@ if __name__ == "__main__":
 Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_server.py``.
 
 > You can use flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn`` 🦄🐍
+> Open [apiminio docs](http://localhost:8000/docs) and explore your new API on [http://localhost:8000](http://localhost:8000/docs) 🔬
 
-## 🥐 Recommended Dev Setup Kubernetes
+Thats it! Please leave me a ⭐ if you like the projekt 🤗
+
+## 🥐 Kubernetes
 
 This repository has a [skaffold.yaml](https://raw.githubusercontent.com/raederan/apiminio/refs/heads/main/skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
 
