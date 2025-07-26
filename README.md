@@ -106,7 +106,7 @@ skaffold dev --no-prune=false --cache-artifacts=false --default-repo localhost:3
 
 This project is licensed under the terms of the Apache License 2.0.
 
-The [banner file](./img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
+The [banner file](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
 
 ## 🦥 Authors
 
