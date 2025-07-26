@@ -86,7 +86,7 @@ Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_serv
 
 ## 🥐 Recommended Dev Setup Kubernetes
 
-This repository has a [skaffold.yaml](./skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
+This repository has a [skaffold.yaml](https://raw.githubusercontent.com/raederan/apiminio/refs/heads/main/skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
 
 ## 🛞 Commands
 
@@ -108,7 +108,7 @@ This project is licensed under the terms of the Apache License 2.0.
 
 Das verwendete Banner apiminio_banner.svg basiert auf einem Bild, das mit Hilfe von Microsoft Copilot generiert und anschließend von Author individuell angepasst wurde.
 
-The [banner file](./img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
+The [banner file](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
 
 ## 🦥 Authors
 

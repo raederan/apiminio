@@ -86,7 +86,7 @@ Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_serv
 
 ## 🥐 Recommended Dev Setup Kubernetes
 
-This repository has a [skaffold.yaml](./skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
+This repository has a [skaffold.yaml](https://raw.githubusercontent.com/raederan/apiminio/refs/heads/main/skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
 
 ## 🛞 Commands
 
