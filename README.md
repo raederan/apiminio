@@ -10,7 +10,7 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/raederan/apiminio)](https://img.shields.io/github/commit-activity/m/raederan/apiminio)
 [![License](https://img.shields.io/github/license/raederan/apiminio)](https://img.shields.io/github/license/raederan/apiminio)
 
-[![apiminio banner](./img/apiminio_banner.svg)](https://docs.apimin.io)
+[![apiminio banner](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg)](https://docs.apimin.io)
 
 apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup.
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
 Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_server.py``.
 
-> You can use all flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn``. 🦄🐍
+> You can use flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn`` 🦄🐍
 
 ## 🥐 Recommended Dev Setup Kubernetes
 
