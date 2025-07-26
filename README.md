@@ -10,7 +10,7 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/raederan/apiminio)](https://img.shields.io/github/commit-activity/m/raederan/apiminio)
 [![License](https://img.shields.io/github/license/raederan/apiminio)](https://img.shields.io/github/license/raederan/apiminio)
 
-🚧🚧🚧 apiminio package is under construction 🚧🚧🚧
+[![apiminio banner](./img/apiminio_banner.svg)](https://docs.apimin.io)
 
 apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup.
 
@@ -22,9 +22,9 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 - [📚 Project](#-project)
 - [🚦 Prerequisites](#-prerequisites)
 - [🚀 Install](#-install)
-- [✔️ Usage](#️-usage)
+- [🌰🐿️💥 Usage](#️-usage)
 - [🥐 Recommended Dev Setup Kubernetes](#-recommended-dev-setup-kubernetes)
-  - [🛞 Commands](#-commands)
+- [🛞 Commands](#-commands)
 - [📜 License](#-license)
 - [🦥 Authors](#-authors)
 
@@ -56,15 +56,39 @@ or use pip
 pip install apiminio
 ```
 
-## ✔️ Usage
+## 🌰🐿️💥 Usage
 
-TBD
+Create your python file, e.g., ``apiminio_server.py``, configure your S3 server like:
+
+```python
+from apiminio import Apiminio, MinioConfig
+from pydantic import SecretStr
+
+app = Apiminio(
+    config=MinioConfig(
+        endpoint="localhost:9000",
+        access_key="minioadmin",
+        secret_key=SecretStr("minioadmin"),
+        secure=False
+    )
+)
+
+if __name__ == "__main__":
+    # Serve FastAPI using Uvicorn
+    import uvicorn
+
+    uvicorn.run("minimal:app", host="0.0.0.0", port=8000, reload=True)
+```
+
+Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_server.py``.
+
+> You can use all flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn``. 🦄🐍
 
 ## 🥐 Recommended Dev Setup Kubernetes
 
 This repository has a [skaffold.yaml](./skaffold.yaml) configuration with a working minio as well as the apiminio service to bootstrap the development 😎🙌
 
-### 🛞 Commands
+## 🛞 Commands
 
 To clone this repository, run:
 
@@ -81,6 +105,8 @@ skaffold dev --no-prune=false --cache-artifacts=false --default-repo localhost:3
 ## 📜 License
 
 This project is licensed under the terms of the Apache License 2.0.
+
+The [banner file](./img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
 
 ## 🦥 Authors
 
