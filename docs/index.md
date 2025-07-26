@@ -22,7 +22,7 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 - [📚 Project](#-project)
 - [🚦 Prerequisites](#-prerequisites)
 - [🚀 Install](#-install)
-- [🌰🐿️💥 Usage](#️-usage)
+- [💥 Usage 🌰🐿️](#-usage-️)
 - [🥐 Recommended Dev Setup Kubernetes](#-recommended-dev-setup-kubernetes)
 - [🛞 Commands](#-commands)
 - [📜 License](#-license)
@@ -56,7 +56,7 @@ or use pip
 pip install apiminio
 ```
 
-## 🌰🐿️💥 Usage
+## 💥 Usage 🌰🐿️
 
 Create your python file, e.g., ``apiminio_server.py``, configure your S3 server like:
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
 Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_server.py``.
 
-> You can use all flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn``. 🦄🐍
+> You can use flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn`` 🦄🐍
 
 ## 🥐 Recommended Dev Setup Kubernetes
 
@@ -106,9 +106,7 @@ skaffold dev --no-prune=false --cache-artifacts=false --default-repo localhost:3
 
 This project is licensed under the terms of the Apache License 2.0.
 
-Das verwendete Banner apiminio_banner.svg basiert auf einem Bild, das mit Hilfe von Microsoft Copilot generiert und anschließend von Author individuell angepasst wurde.
-
-The [banner file](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
+The [banner file](./img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
 
 ## 🦥 Authors
 

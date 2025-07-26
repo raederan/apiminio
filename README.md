@@ -22,7 +22,7 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 - [📚 Project](#-project)
 - [🚦 Prerequisites](#-prerequisites)
 - [🚀 Install](#-install)
-- [🌰🐿️💥 Usage](#️-usage)
+- [💥 Usage 🌰🐿️](#-usage-️)
 - [🥐 Recommended Dev Setup Kubernetes](#-recommended-dev-setup-kubernetes)
 - [🛞 Commands](#-commands)
 - [📜 License](#-license)
@@ -56,7 +56,7 @@ or use pip
 pip install apiminio
 ```
 
-## 🌰🐿️💥 Usage
+## 💥 Usage 🌰🐿️
 
 Create your python file, e.g., ``apiminio_server.py``, configure your S3 server like:
 
