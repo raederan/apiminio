@@ -1,1 +1,1 @@
-::: apiminio.foo
+::: apiminio.main
