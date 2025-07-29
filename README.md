@@ -31,7 +31,7 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 ## 💡 Project
 
 1. At 1st basic implementation of apiminio, handling buckets and files will be focused.
-2. MCP (Model Context Protocol) wrapped endpoints to enable usage for AI agent tools 
+2. MCP (Model Context Protocol) wrapped endpoints to enable usage for AI agent tools
 3. Security will be at the 2nd development stage using authenticated sessions by credentials as well as tokens.
 4. Certificate handling and TLS will be the 3rd level.
 
@@ -110,7 +110,7 @@ skaffold dev --no-prune=false --cache-artifacts=false --default-repo localhost:3
 
 This project is licensed under the terms of the Apache License 2.0.
 
-The [banner file](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
+The [banner file](https://github.com/raederan/apiminio/blob/main/img/apiminio_banner.svg) is based on an original png generated using Microsoft Copilot and subsequently modified further as svg by the initial author of this repository.
 
 ## 🦥 Authors
 
