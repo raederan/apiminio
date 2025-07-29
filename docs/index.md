@@ -12,7 +12,7 @@
 
 [![apiminio banner](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg)](https://docs.apimin.io)
 
-apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup. Additionally,  customized endpoint setups as well as wrapped AI agent tools via MCP will also be possible in future to provide an interface for LLMs to S3 bucket objects and your custom endpoints.  
+apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup. Additionally,  customized endpoint setups as well as wrapped AI agent tools via MCP will also be possible in future to provide an interface for LLMs to S3 bucket objects and your custom endpoints.
 
 - **Github repository** <https://github.com/raederan/apiminio/>
 - **Documentation** <https://docs.apimin.io/>
