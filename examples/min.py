@@ -3,7 +3,7 @@ from pydantic import SecretStr
 from apiminio import Apiminio, MinioConfig
 
 app = Apiminio(
-    config=MinioConfig(
+    minio_config=MinioConfig(
         endpoint="localhost:9000",
         access_key="minioadmin",
         secret_key=SecretStr("minioadmin"),

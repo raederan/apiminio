@@ -2,8 +2,8 @@
 
 import importlib.metadata
 
-from .main import Apiminio, MinioConfig
+from .main import Apiminio, McpConfig, MinioConfig
 
 __version__ = importlib.metadata.version("apiminio")
 
-__all__ = ["Apiminio", "MinioConfig", "__version__"]
+__all__ = ["Apiminio", "McpConfig", "MinioConfig", "__version__"]

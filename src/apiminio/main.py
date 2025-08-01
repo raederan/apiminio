@@ -1,13 +1,17 @@
 """Entrypoint of apiminio, refactored as Apiminio class."""
 
+import asyncio
 import os
+from enum import Enum
 from io import BytesIO
 from typing import Optional
 
+import param
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi_mcp import FastApiMCP  # type: ignore[import-untyped]
 from minio import Minio  # type: ignore[import-untyped]
 from minio.error import S3Error  # type: ignore[import-untyped]
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel, Field, SecretStr
 
 
 class BucketRequest(BaseModel):
@@ -25,21 +29,62 @@ class MinioConfig(BaseModel):
     secure: bool = bool(int(os.getenv("MINIO_SECURE", "0")))
 
 
+class TransportEnum(str, Enum):
+    """Enum for MCP transport protocols."""
+
+    http = "http"
+    sse = "sse"
+
+
+class McpConfig(BaseModel):
+    """MCP transport protocol configuration for Apiminio."""
+
+    # Enable MCP support
+    enable_mcp: bool = param.Boolean(default=True)
+    # Either http or sse allowed
+    transport: TransportEnum = Field(
+        default=TransportEnum.http,
+        description="Transport protocol for MCP, either 'http' or 'sse'.",
+    )
+
+
 # Inherit FastAPI so Apiminio can be used as a drop-in replacement
 class Apiminio(FastAPI):
     """
     Apiminio is a REST interface inheriting FastAPI and providing Minio functionality.
     """
 
-    def __init__(self, config: MinioConfig) -> None:
+    def __init__(self, minio_config: MinioConfig, mcp_config: Optional[McpConfig] = None) -> None:
+        if mcp_config is None:
+            self.mcp_config = McpConfig(enable_mcp=False)
+        else:
+            self.mcp_config = mcp_config
         super().__init__(description="apiminio")
         self.minio = Minio(
-            endpoint=config.endpoint,
-            access_key=config.access_key,
-            secret_key=config.secret_key.get_secret_value(),
-            secure=config.secure,
+            endpoint=minio_config.endpoint,
+            access_key=minio_config.access_key,
+            secret_key=minio_config.secret_key.get_secret_value(),
+            secure=minio_config.secure,
         )
         self.register_routes()
+        self.mount_mcp()  # Conditonally mount MCP
+
+    def mount_mcp(self) -> None:
+        """Mount MCP support if enabled."""
+        if self.mcp_config.enable_mcp:
+            self.mcp = FastApiMCP(self)
+            try:
+                if self.mcp_config.transport == "http":
+                    self.mcp.mount_http()
+                elif self.mcp_config.transport == "sse":
+                    self.mcp.mount_sse()
+                else:
+                    print(f"Unsupported transport type: {self.mcp_config.transport}")
+            except Exception as e:
+                print(e)
+        else:
+            # If MCP is not enabled, do not mount it
+            pass
 
     def register_routes(self) -> None:
         """Register all routes for the Apiminio class."""
@@ -63,21 +108,16 @@ class Apiminio(FastAPI):
 
     async def read_root(self) -> dict:
         """Root endpoint for apiminio."""
-        return {"message": "yo apiminio!"}
+        return {"status": "ok", "message": "yo apiminio!"}
 
     async def health_check(self) -> dict:
         """Health check endpoint for minio connection."""
         try:
-            buckets = self.minio.list_buckets()
-            if buckets is None:
-                return {"alive": True}
-            else:
-                return {"alive": True}
-        except S3Error as e:
-            raise HTTPException(status_code=500, detail=str(e)) from e
+            await asyncio.wait_for(asyncio.to_thread(self.minio.list_buckets), timeout=3)
+        except asyncio.TimeoutError:
             return {"alive": False}
-
-        # Fallback for mypy, though unreachable
+        else:
+            return {"alive": True}
 
     async def list_buckets(self) -> dict:
         """List all bucket names."""
@@ -161,7 +201,3 @@ class Apiminio(FastAPI):
                 return {"message": f"File '{file_name}' deleted successfully from bucket '{bucket_name}'."}
         except S3Error as e:
             raise HTTPException(status_code=500, detail=str(e)) from e
-
-
-# Instantiate Apiminio directly as you would FastAPI including a Minio configuration
-apiminio = Apiminio(config=MinioConfig())

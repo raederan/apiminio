@@ -12,7 +12,11 @@
 
 [![apiminio banner](https://raw.githubusercontent.com/raederan/apiminio/018c35c90a1cc772611bc2ca17dc926832e3612b/img/apiminio_banner.svg)](https://docs.apimin.io)
 
-apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup. Additionally,  customized endpoint setups as well as wrapped AI agent tools via MCP will also be possible in future to provide an interface for LLMs to S3 bucket objects and your custom endpoints.
+apiminio is a Python package that provides a ready-to-use REST API for interacting with MinIO S3 storage, built with FastAPI and the MinIO Python client. It enables seamless file uploads, downloads, and bucket management via HTTP interface ideal for integrating MinIO S3 into your applications with minimal setup.
+
+Additionally, wrapped AI agent tools via MCP are now supported to provide an interface for LLMs to S3 bucket objects ✨
+
+🔜 Customization of your own endpoints!
 
 - **Github repository** <https://github.com/raederan/apiminio/>
 - **Documentation** <https://docs.apimin.io/>
@@ -23,6 +27,9 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 - [🚦 Prerequisites](#-prerequisites)
 - [🚀 Install](#-install)
 - [💥 Usage 🌰🐿️](#-usage-️)
+  - [✔️ Minimal Example](#️-minimal-example)
+  - [🐍 Run the Server](#-run-the-server)
+- [Support](#support)
 - [🥐 Kubernetes](#-kubernetes)
 - [🛞 Commands](#-commands)
 - [📜 License](#-license)
@@ -30,10 +37,17 @@ apiminio is a Python package that provides a ready-to-use REST API for interacti
 
 ## 💡 Project
 
-1. At 1st basic implementation of apiminio, handling buckets and files will be focused.
-2. MCP (Model Context Protocol) wrapped endpoints to enable usage for AI agent tools
-3. Security will be at the 2nd development stage using authenticated sessions by credentials as well as tokens.
-4. Certificate handling and TLS will be the 3rd level.
+1. [ ] At 1st basic implementation of apiminio, handling buckets and files will be focused.
+   1. [x] Create buckets
+   2. [x] List buckets
+   3. [x] Delete buckets
+   4. [x] Upload files
+   5. [ ] Download files
+   6. [x] Delete files
+2. [x] MCP (Model Context Protocol) wrapped endpoints to enable usage for AI agent tools
+3. [ ] Customization of additional endpoints and MCP tools
+4. [ ] Security will be at the 2nd development stage using authenticated sessions by credentials as well as tokens.
+5. [ ] Certificate handling and TLS will be the 3rd level.
 
 ## 🚦 Prerequisites
 
@@ -59,14 +73,17 @@ pip install apiminio
 
 ## 💥 Usage 🌰🐿️
 
-Create your python file, e.g., ``apiminio_server.py``, configure your S3 server like:
+Create your python file, e.g., ``apiminio_server.py``, configure your S3 server and run it.
+You can use the following examples as a starting point.
+
+### ✔️ Minimal Example
 
 ```python
 from apiminio import Apiminio, MinioConfig
 from pydantic import SecretStr
 
 app = Apiminio(
-    config=MinioConfig(
+    minio_config=MinioConfig(
         endpoint="localhost:9000",
         access_key="minioadmin",
         secret_key=SecretStr("minioadmin"),
@@ -81,12 +98,17 @@ if __name__ == "__main__":
     uvicorn.run("minimal:app", host="0.0.0.0", port=8000, reload=True)
 ```
 
+### 🐍 Run the Server
+
 Either just run ``python apiminio_server.py`` or use ``fastapi run apiminio_server.py``.
 
 > You can use flags and parmeters inherited from ``FastAPI`` to deploy your ``apiminio`` server via ``Uvicorn`` 🦄🐍
 > Open [apiminio docs](http://localhost:8000/docs) and explore your new API on [http://localhost:8000](http://localhost:8000/docs) 🔬
 
+## Support
+
 Thats it! Please leave me a ⭐ if you like the projekt 🤗
+More features coming soon!
 
 ## 🥐 Kubernetes
 
