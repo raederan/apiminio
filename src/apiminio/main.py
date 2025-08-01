@@ -6,7 +6,7 @@ from enum import Enum
 from io import BytesIO
 from typing import Optional
 
-import param
+import param  # type: ignore[import-untyped]
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi_mcp import FastApiMCP  # type: ignore[import-untyped]
 from minio import Minio  # type: ignore[import-untyped]
